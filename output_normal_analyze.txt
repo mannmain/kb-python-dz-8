@@ -1,0 +1,38 @@
+aleksey@aleksey-virtual-machine:~/dz8$ sudo python3 scapy_xss_analyzer.py --analyze normal.pcap 
+Анализ трафика из файла: normal.pcap
+Найдено HTTP-сообщений: 41
+XSS-полезные нагрузки не найдены
+
+Пример HTTP-сообщений:
+
+HTTP-сообщение 1 (первые 300 символов):
+HTTP/1.1 200 OK
+date: Tue, 10 Feb 2026 21:25:38 GMT
+expires: Tue, 10 Feb 2026 21:35:38 GMT
+cache-control: public, max-age=600
+etag: "3m8CBg"
+x-cloud-trace-context: 10ae8612d4a13c0712f80b46a980c470
+content-type: image/vnd.microsoft.icon
+content-encoding: gzip
+server: Google Frontend
+Transfer
+
+HTTP-сообщение 2 (первые 300 символов):
+GET /516872036966218728664847486042992384790/newaccount.gtl HTTP/1.1
+Host: google-gruyere.appspot.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+
+HTTP-сообщение 3 (первые 300 символов):
+HTTP/1.1 200 OK
+cache-control: no-cache
+content-type: text/html
+pragma: no-cache
+x-xss-protection: 0
+content-encoding: gzip
+x-cloud-trace-context: dab652ebea50ff8fa93d16a5b5f51dd2
+vary: Accept-Encoding
+date: Tue, 10 Feb 2026 21:25:54 GMT
+server: Google Frontend
+Content-Length: 1155

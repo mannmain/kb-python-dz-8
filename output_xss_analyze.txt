@@ -1,0 +1,51 @@
+aleksey@aleksey-virtual-machine:~/dz8$ sudo python3 scapy_xss_analyzer.py --analyze xss.pcap
+Анализ трафика из файла: xss.pcap
+Найдено HTTP-сообщений: 8
+
+Пример HTTP-сообщений:
+
+HTTP-сообщение 1 (первые 300 символов):
+GET /516872036966218728664847486042992384790/newsnippet.gtl HTTP/1.1
+Host: google-gruyere.appspot.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+
+HTTP-сообщение 2 (первые 300 символов):
+HTTP/1.1 200 OK
+cache-control: no-cache
+content-type: text/html
+pragma: no-cache
+x-xss-protection: 0
+content-encoding: gzip
+x-cloud-trace-context: 762e5135a9dcb2b1a6f30497da25e863
+vary: Accept-Encoding
+date: Tue, 10 Feb 2026 21:37:58 GMT
+server: Google Frontend
+Content-Length: 1132
+
+
+
+HTTP-сообщение 3 (первые 300 символов):
+GET /516872036966218728664847486042992384790/newsnippet2?snippet=%3Cimg+src%3D%22nonexistent.jpg%22+onerror%3D%22alert%28%27XSS%27%29%22%3E%0D%0A HTTP/1.1
+Host: google-gruyere.appspot.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0
+Accept: text/html,
+============================================================
+[!] Найдена XSS-полезная нагрузка (HTTP-сообщение 3)
+[!] Сигнатура: onerror
+------------------------------------------------------------
+GET /516872036966218728664847486042992384790/newsnippet2?snippet=%3Cimg+src%3D%22nonexistent.jpg%22+onerror%3D%22alert%28%27XSS%27%29%22%3E%0D%0A HTTP/1.1
+Host: google-gruyere.appspot.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Referer: http://google-gruyere.appspot.com/516872036966218728664847486042992384790/newsnippet.gtl
+Cookie: GRUYERE=110845406|test||author; GRUYERE_ID=516872036966218728664847486042992384790
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+
+
+============================================================
